@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-prettier-scss",
+    "stylelint-config-rational-order"
+  ],
+  "plugins": ["stylelint-group-selectors"],
+  "rules": {
+    "plugin/stylelint-group-selectors": true,
+    "selector-class-pattern": [
+      "^([a-z][a-z0-9]*)(-[a-z0-9]+)*(--[a-z0-9]+)*$",
+      {
+        "message": "Expected class selector to be kebab-case"
+      }
+    ]
+  },
+  "ignoreFiles": ["**/*.[tj]sx","**/*.[tj]s","**/*.svg"]
+}
