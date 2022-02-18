@@ -25,7 +25,8 @@
     "fix:style": "npx stylelint ./src --fix",
     "fix:js": "npx eslint ./src --fix",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -71,11 +72,17 @@
     "eslint": "^8.9.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-storybook": "^0.5.7",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.4",
     "stylelint": "^14.5.1",
     "stylelint-config-prettier-scss": "^0.0.1",
     "stylelint-config-standard-scss": "^3.0.0",
     "stylelint-group-selectors": "^1.0.8",
     "stylelint-order": "^5.0.0",
     "webpack": "^5.69.1"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.css": "stylelint --fix"
   }
 }
