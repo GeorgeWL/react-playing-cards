@@ -23,12 +23,24 @@
     "test:watch": "react-scripts test",
     "eject": "react-scripts eject",
     "fix:style": "npx stylelint ./src --fix",
-    "fix:js": "npx eslint ./src --fix"
+    "fix:js": "npx eslint ./src --fix",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "browserslist": {
@@ -44,16 +56,26 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.4.19",
+    "@storybook/addon-essentials": "^6.4.19",
+    "@storybook/addon-interactions": "^6.4.19",
+    "@storybook/addon-links": "^6.4.19",
+    "@storybook/builder-webpack5": "^6.4.19",
+    "@storybook/manager-webpack5": "^6.4.19",
+    "@storybook/node-logger": "^6.4.19",
+    "@storybook/preset-create-react-app": "^4.0.1",
+    "@storybook/react": "^6.4.19",
+    "@storybook/testing-library": "^0.0.9",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
     "eslint": "^8.9.0",
     "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-storybook": "^0.5.7",
     "stylelint": "^14.5.1",
-    "stylelint-config-idiomatic-order": "^8.1.0",
     "stylelint-config-prettier-scss": "^0.0.1",
-    "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard-scss": "^3.0.0",
     "stylelint-group-selectors": "^1.0.8",
-    "stylelint-order": "^5.0.0"
+    "stylelint-order": "^5.0.0",
+    "webpack": "^5.69.1"
   }
 }
