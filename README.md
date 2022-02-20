@@ -16,6 +16,11 @@ You will also see any lint errors in the console.
 
 ### `npm test`
 
+Launches the test runner in the run-then-exit mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm test:watch`
+
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
@@ -28,6 +33,22 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run fix:style`
+
+Runs stylelint on all css/scss files within the project, in fix mode, which attempts to resolve issues automatically, and exits with errors if finds issues that is unable to auto-fix
+
+### `npm run fix:js`
+
+Runs eslint on all js/ts/jsx/tsx files within the project, in fix mode, which attempts to resolve issues automatically, and exits with errors if finds issues that is unable to auto-fix
+
+### `npm run storybook`
+
+Runs [Storybook](https://storybook.js.org/), a documentation/protoyping toolkit which aids in rapid development of standalone components
+
+### `build-storybook`
+
+Builds Storybook, so it can be hosted on a remote server
 
 ### `npm run eject`
 
