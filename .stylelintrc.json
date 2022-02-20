@@ -28,7 +28,9 @@
                 },
                 "rules"
             ],
-            { "severity": "warning" }
+            {
+                "severity": "warning"
+            }
         ],
         "order/properties-order": [
             [
