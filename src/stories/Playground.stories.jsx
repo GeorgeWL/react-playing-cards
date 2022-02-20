@@ -16,7 +16,7 @@ const Playground = () => (
             style={{
                 display: 'flex',
                 justifyContent: 'space-evenly',
-                flexDirection: 'row',
+                flexDirection: 'row'
             }}
         >
             <LiveError />
@@ -24,7 +24,7 @@ const Playground = () => (
                 style={{
                     width: '50%',
                     display: 'flex',
-                    flexDirection: 'column',
+                    flexDirection: 'column'
                 }}
             >
                 <label style={{ margin: '10px', width: '100%' }}>
@@ -36,7 +36,7 @@ const Playground = () => (
                 style={{
                     width: '50%',
                     display: 'flex',
-                    flexDirection: 'column',
+                    flexDirection: 'column'
                 }}
             >
                 <label style={{ margin: '10px', width: '100%' }}>Editor:</label>
@@ -45,9 +45,10 @@ const Playground = () => (
         </div>
     </LiveProvider>
 );
+
 export default {
     title: 'Playground',
-    component: Playground,
+    component: Playground
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
