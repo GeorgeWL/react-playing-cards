@@ -1,3 +1,4 @@
+import { JsxChild } from 'typescript';
 import './button.css';
 
 interface ButtonProps {
@@ -16,7 +17,7 @@ interface ButtonProps {
     /**
      * Button contents
      */
-    label: string;
+    children: JsxChild;
     /**
      * Optional click handler
      */
@@ -30,7 +31,7 @@ export const Button = ({
     primary = false,
     size = 'medium',
     backgroundColor,
-    label,
+    children,
     ...props
 }: ButtonProps) => {
     const mode = primary
@@ -47,7 +48,7 @@ export const Button = ({
             style={{ backgroundColor }}
             {...props}
         >
-            {label}
+            {children}
         </button>
     );
 };
