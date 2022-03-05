@@ -1,18 +1,50 @@
-import IStyleProps from '../../interfaces/IStyleProps';
+import ICardSharedProps from '../../interfaces/CardSharedProps';
 import CardBack, { ICardBackProps } from './CardBack';
-import CardFront from './CardFront';
+import CardFront, { ICardFrontProps } from './CardFront';
+import styles from './card.module.scss';
+import classNames from 'classnames';
 
-interface IProps extends IStyleProps {
+enum ECardSide {
+    front = 'Front',
+    back = 'Back'
+}
+interface IProps extends ICardSharedProps {
     backProps: ICardBackProps;
-    flipped: boolean;
+    frontProps: ICardFrontProps;
+    visibleSide: ECardSide;
     onClick: () => void;
 }
 
-const Card = ({ onClick, flipped, backProps }: IProps) => (
-    <div className={`card-flippable${flipped ? ' card-flipped' : ''}`}>
+const stylesCardFlippedFront = styles['card-flipped-front'];
+const stylesCardFlippedBack = styles['card-flipped-back'];
+
+const Card = ({
+    onClick,
+    visibleSide = ECardSide.front,
+    backProps,
+    frontProps,
+    style,
+    className,
+    backgroundImageUrl
+}: IProps) => (
+    <div
+        style={{
+            ...style,
+            backgroundImage: backgroundImageUrl && `url(${backgroundImageUrl})`
+        }}
+        className={classNames(
+            styles.card,
+            visibleSide === ECardSide.front
+                ? stylesCardFlippedFront
+                : stylesCardFlippedBack,
+            className
+        )}
+    >
+        <CardFront {...frontProps} />
         <CardBack {...backProps} />
-        <CardFront />
-        <button onClick={onClick}>Flip Card</button>
+        <button onClick={onClick} title="Flip Card">
+            Flip Card
+        </button>
     </div>
 );
 

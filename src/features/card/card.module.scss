@@ -1,0 +1,43 @@
+%card-shared {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    outline: transparent solid 1px;
+    pointer-events: none;
+    outline: 2px solid;
+}
+
+.card {
+    position: relative;
+    width: 400px;
+    height: 600px;
+    transform-style: preserve-3d;
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-flipped-front {
+    transform: translateY(0px) rotateY(0deg);
+}
+
+.card-flipped-back {
+    transform: translateY(0px) rotateY(180deg);
+}
+
+.card-front {
+    @extend %card-shared;
+    background: white;
+    z-index: 1;
+}
+
+.card-back {
+    @extend %card-shared;
+    transform: rotateY(180deg) translateZ(1px);
+}
