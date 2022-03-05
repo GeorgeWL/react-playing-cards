@@ -1,3 +1,5 @@
+@use './patterns';
+
 %card-shared {
     position: absolute;
     width: 100%;
@@ -40,4 +42,57 @@
 .card-back {
     @extend %card-shared;
     transform: rotateY(180deg) translateZ(1px);
+}
+
+.card-back-pattern--wavy {
+    @include patterns.background-wavy;
+}
+.card-back-pattern--rhombus {
+    @include patterns.background-rhombus;
+}
+.card-back-pattern--zig-zag {
+    @include patterns.background-zigzag;
+}
+.card-back-pattern--zig-zag3d {
+    @include patterns.background-zig-zag-3d;
+}
+.card-back-pattern--diagonal-stripes-thin-right-left {
+    @include patterns.background-diagonal-stripes-thin;
+}
+.card-back-pattern--diagonal-stripes-thin-left-right {
+    @include patterns.background-diagonal-stripes-thin(
+        $rotationDegrees: -45deg
+    );
+}
+.card-back-pattern--diagonal-stripes-wide-right-left {
+    @include patterns.background-diagonal-stripes-wide;
+}
+.card-back-pattern--diagonal-stripes-wide-left-right {
+    @include patterns.background-diagonal-stripes-wide(
+        $rotationDegrees: -45deg
+    );
+}
+.card-back-pattern--graph-paper {
+    @include patterns.background-graph-paper;
+}
+.card-back-pattern--lined-paper-horizontal {
+    @include patterns.background-lined-paper;
+}
+.card-back-pattern--lined-paper-vertical {
+    @include patterns.background-lined-paper($direction: 'vertical');
+}
+.card-back-pattern--squares-paper {
+    @include patterns.background-squares-paper;
+}
+.card-back-pattern--stripes-vertical {
+    @include patterns.background-stripes;
+}
+.card-back-pattern--stripes-horizontal {
+    @include patterns.background-stripes($direction: 'horizontal');
+}
+.card-back-pattern--square-tiles {
+    @include patterns.background-square-tiles;
+}
+.card-back-pattern--isometric-tiles {
+    @include patterns.background-isometric-tiles;
 }

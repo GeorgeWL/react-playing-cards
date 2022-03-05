@@ -1,0 +1,252 @@
+@use 'sass:color';
+// source: https://www.magicpattern.design/tools/css-backgrounds
+$primaryColor: #444cf7 !default;
+$secondaryColor: #ffffff !default;
+$opacity: 0.8 !default;
+// mixins with $direction use this
+$possible-directions: 'horizontal', 'vertical';
+$possible-diagonals: 45deg, -45deg;
+
+// set of mixins for background pattern styling
+
+@mixin background-wavy {
+    background-color: $secondaryColor;
+    opacity: $opacity;
+    background-image: repeating-radial-gradient(
+            circle at 0 0,
+            transparent 0,
+            $secondaryColor 10px
+        ),
+        repeating-linear-gradient(
+            #{color.adjust($primaryColor, $alpha: 0.25)},
+            $primaryColor
+        );
+}
+
+@mixin background-rhombus {
+    background-color: $secondaryColor;
+    opacity: $opacity;
+    background-image: repeating-radial-gradient(
+            circle at 0 0,
+            transparent 0,
+            $secondaryColor 10px
+        ),
+        repeating-linear-gradient(
+            #{color.adjust($primaryColor, $alpha: 0.25)},
+            $primaryColor
+        );
+}
+
+@mixin background-zigzag {
+    background-color: $primaryColor;
+    opacity: 0.8;
+    background-image: linear-gradient(
+            135deg,
+            $primaryColor 25%,
+            transparent 25%
+        ),
+        linear-gradient(225deg, $primaryColor 25%, transparent 25%),
+        linear-gradient(45deg, $primaryColor 25%, transparent 25%),
+        linear-gradient(315deg, $primaryColor 25%, $primaryColor 25%);
+    background-position: 10px 0, 10px 0, 0 0, 0 0;
+    background-size: 20px 20px;
+    background-repeat: repeat;
+}
+
+@mixin background-zig-zag-3d {
+    background-color: $secondaryColor;
+    opacity: $opacity;
+    background: linear-gradient(
+                135deg,
+                rgba($primaryColor, 0.33) 25%,
+                transparent 25%
+            ) -10px 0/ 20px 20px,
+        linear-gradient(225deg, $primaryColor 25%, transparent 25%) -10px 0/
+            20px 20px,
+        linear-gradient(315deg, rgba($primaryColor, 0.33) 25%, transparent 25%)
+            0px 0/ 20px 20px,
+        linear-gradient(45deg, $primaryColor 25%, $secondaryColor 25%) 0px 0/ 20px
+            20px;
+}
+
+@mixin background-diagonal-stripes-thin($rotationDegrees: 45deg) {
+    @if not index($possible-diagonals, $rotationDegrees) {
+        @error "Property #{$rotationDegrees} must be either '45deg' or '-45deg'.";
+    }
+    background-color: $secondaryColor;
+    opacity: 0.8;
+    background-size: 10px 10px;
+    background-image: repeating-linear-gradient(
+        #{$rotationDegrees}deg,
+        $primaryColor 0,
+        $primaryColor 1px,
+        $secondaryColor 0,
+        $secondaryColor 50%
+    );
+}
+
+@mixin background-diagonal-stripes-wide($rotationDegrees: 45deg) {
+    @if not index($possible-diagonals, $rotationDegrees) {
+        @error "Property #{$rotationDegrees} must be either '45deg' or '-45deg'.";
+    }
+
+    background-color: $secondaryColor;
+    opacity: $opacity;
+    background: repeating-linear-gradient(
+        #{$rotationDegrees}deg,
+        $primaryColor,
+        $primaryColor 5px,
+        $secondaryColor 5px,
+        $secondaryColor 25px
+    );
+}
+
+@mixin background-graph-paper {
+    background-color: $secondaryColor;
+    opacity: $opacity;
+    background-image: linear-gradient($primaryColor 2px, transparent 2px),
+        linear-gradient(90deg, $primaryColor 2px, transparent 2px),
+        linear-gradient($primaryColor 1px, transparent 1px),
+        linear-gradient(90deg, $primaryColor 1px, $secondaryColor 1px);
+    background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+}
+
+@mixin background-squares-paper {
+    background-color: $secondaryColor;
+    opacity: 0.8;
+    background-image: linear-gradient($primaryColor 1px, transparent 1px),
+        linear-gradient(to right, $primaryColor 1px, $secondaryColor 1px);
+    background-size: 20px 20px;
+}
+
+@mixin background-lined-paper($direction: 'horizontal') {
+    @if not index($possible-directions, $direction) {
+        @error "Property #{$direction} must be either 'vertical' or 'horizontal'.";
+    }
+
+    background-color: $secondaryColor;
+    opacity: 0.8;
+    background-size: 20px 20px;
+    background-image: repeating-linear-gradient(
+        0deg,
+        $primaryColor,
+        $primaryColor 1px,
+        $secondaryColor 1px,
+        $secondaryColor
+    );
+
+    @if $direction == 'vertical' {
+        background-image: linear-gradient(
+            to right,
+            $primaryColor,
+            $primaryColor 5px,
+            $secondaryColor 5px,
+            $secondaryColor
+        );
+        background-size: 10px 100%;
+    }
+}
+
+@mixin background-stripes($direction: vertical) {
+    @if not index($possible-directions, $direction) {
+        @error "Property #{$direction} must be either 'vertical' or 'horizontal'.";
+    }
+
+    background-color: $secondaryColor;
+    opacity: 0.8;
+    background-size: 10px 100%;
+    background-image: linear-gradient(
+        0deg,
+        $secondaryColor 50%,
+        $primaryColor 50%
+    );
+
+    @if $direction == 'horizontal' {
+        background-image: linear-gradient(
+            to right,
+            $primaryColor,
+            $primaryColor 5px,
+            $secondaryColor 5px,
+            $secondaryColor
+        );
+    }
+}
+
+@mixin background-square-tiles {
+    background-color: $secondaryColor;
+    opacity: 0.8;
+    background-image: repeating-linear-gradient(
+            45deg,
+            $primaryColor 25%,
+            transparent 25%,
+            transparent 75%,
+            $primaryColor 75%,
+            $primaryColor
+        ),
+        repeating-linear-gradient(
+            45deg,
+            $primaryColor 25%,
+            $secondaryColor 25%,
+            $secondaryColor 75%,
+            $primaryColor 75%,
+            $primaryColor
+        );
+    background-position: 0 0, 10px 10px;
+    background-size: 20px 20px;
+}
+
+@mixin background-isometric-tiles {
+    background-color: $secondaryColor;
+    opacity: 0.8;
+    background-image: linear-gradient(
+            30deg,
+            $primaryColor 12%,
+            transparent 12.5%,
+            transparent 87%,
+            $primaryColor 87.5%,
+            $primaryColor
+        ),
+        linear-gradient(
+            150deg,
+            $primaryColor 12%,
+            transparent 12.5%,
+            transparent 87%,
+            $primaryColor 87.5%,
+            $primaryColor
+        ),
+        linear-gradient(
+            30deg,
+            $primaryColor 12%,
+            transparent 12.5%,
+            transparent 87%,
+            $primaryColor 87.5%,
+            $primaryColor
+        ),
+        linear-gradient(
+            150deg,
+            $primaryColor 12%,
+            transparent 12.5%,
+            transparent 87%,
+            $primaryColor 87.5%,
+            $primaryColor
+        ),
+        linear-gradient(
+            60deg,
+            rgba($primaryColor, 0.47) 25%,
+            transparent 25.5%,
+            transparent 75%,
+            rgba($primaryColor, 0.47) 75%,
+            rgba($primaryColor, 0.47)
+        ),
+        linear-gradient(
+            60deg,
+            rgba($primaryColor, 0.47) 25%,
+            transparent 25.5%,
+            transparent 75%,
+            rgba($primaryColor, 0.47) 75%,
+            rgba($primaryColor, 0.47)
+        );
+    background-size: 20px 35px;
+    background-position: 0 0, 0 0, 10px 18px, 10px 18px, 0 0, 10px 18px;
+}

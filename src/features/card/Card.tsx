@@ -18,6 +18,10 @@ interface IProps extends ICardSharedProps {
 const stylesCardFlippedFront = styles['card-flipped-front'];
 const stylesCardFlippedBack = styles['card-flipped-back'];
 
+/**
+ * Card with front and back side
+ * @returns
+ */
 const Card = ({
     onClick,
     visibleSide = ECardSide.front,

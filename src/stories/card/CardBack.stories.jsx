@@ -15,7 +15,6 @@ export default {
     title: 'Card/CardBack',
     component: CardBack,
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-    argTypes: {},
     decorators: [
         Story => (
             <Wrapper>

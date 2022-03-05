@@ -2,18 +2,30 @@ import classNames from 'classnames';
 import ICardSharedProps from '../../interfaces/CardSharedProps';
 import styles from './card.module.scss';
 
-const wavyStyle = {
-    backgroundColor: '#e5e5f7',
-    opacity: 0.8,
-    backgroundImage:
-        ' repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 10px ), repeating-linear-gradient( #444cf755, #444cf7 )'
-};
-
 enum EPatterns {
-    wavy = 'Wavy'
+    wavy = 'wavy',
+    rhombus = 'rhombus',
+    zigZag = 'zig-zag',
+    zigZag3d = 'zig-zag3d',
+    diagonalStripesThinRightLeft = 'diagonal-stripes-thin-right-left',
+    diagonalStripesThinLeftRight = 'diagonal-stripes-thin-left-right',
+    diagonalStripesWideRightLeft = 'diagonal-stripes-wide-right-left',
+    diagonalStripesWideLeftRight = 'diagonal-stripes-wide-left-right',
+    graphPaper = 'graph-paper',
+    linedPaperHorizontal = 'lined-paper-horizontal',
+    linedPaperVertical = 'lined-paper-vertical',
+    squaresPaper = 'squares-paper',
+    stripesVertical = 'stripes-vertical',
+    stripesHorizontal = 'stripes-horizontal',
+    squareTiles = 'square-tiles',
+    isometricTiles = 'isometric-tiles'
 }
+
 export interface ICardBackProps extends ICardSharedProps {
-    pattern?: EPatterns;
+    patternName: EPatterns;
+    patternPrimaryColor?: string;
+    patternSecondaryColor?: string;
+    patternOpacity: number;
 }
 
 /**
@@ -23,17 +35,31 @@ export interface ICardBackProps extends ICardSharedProps {
 const CardBack = ({
     style,
     className,
-    backgroundImageUrl
-}: ICardBackProps): JSX.Element => (
+    patternName,
+    patternPrimaryColor,
+    patternSecondaryColor,
+    patternOpacity
+}: ICardBackProps) => (
     <div
+        title="card back"
         style={{
             ...style,
-            backgroundImage: backgroundImageUrl && `url(${backgroundImageUrl})`
+            ['--pattern-primary-color' as never]:
+                patternPrimaryColor ?? '#444cf7',
+            ['--pattern-secondary-color' as never]:
+                patternSecondaryColor ?? '#f8ff37',
+            ['--pattern-opacity' as never]:
+                (patternOpacity >= 0 &&
+                    patternOpacity <= 100 &&
+                    patternOpacity) ??
+                0.8
         }}
-        className={classNames(styles['card-back'], className)}
-    >
-        CardBack
-    </div>
+        className={classNames(
+            styles['card-back'],
+            patternName && styles[`card-back-pattern--${patternName}`],
+            className
+        )}
+    />
 );
 
 export default CardBack;
