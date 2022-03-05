@@ -1,6 +1,6 @@
 import dracula from 'prism-react-renderer/themes/dracula';
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
-import { Button } from './Button';
+import Button from '../features/inputs/Button';
 
 const scope = { Button };
 

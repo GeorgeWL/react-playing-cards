@@ -1,4 +1,4 @@
-import { JsxChild } from 'typescript';
+import React from 'react';
 import './button.css';
 
 interface ButtonProps {
@@ -17,7 +17,7 @@ interface ButtonProps {
     /**
      * Button contents
      */
-    children: JsxChild;
+    children: React.ReactChildren;
     /**
      * Optional click handler
      */
@@ -27,7 +27,7 @@ interface ButtonProps {
 /**
  * Primary UI component for user interaction
  */
-export const Button = ({
+const Button = ({
     primary = false,
     size = 'medium',
     backgroundColor,
@@ -43,7 +43,7 @@ export const Button = ({
             className={[
                 'storybook-button',
                 `storybook-button--${size}`,
-                mode,
+                mode
             ].join(' ')}
             style={{ backgroundColor }}
             {...props}
@@ -52,3 +52,4 @@ export const Button = ({
         </button>
     );
 };
+export default Button;
