@@ -2,7 +2,7 @@
 module.exports = {
     env: {
         browser: true,
-        es2021: true,
+        es2021: true
     },
     extends: [
         'eslint:recommended',
@@ -10,20 +10,21 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'plugin:storybook/recommended',
         'plugin:react/jsx-runtime',
-        'prettier',
+        'plugin:jsx-a11y/recommended',
+        'prettier'
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
-            jsx: true,
+            jsx: true
         },
         ecmaVersion: 'latest',
-        sourceType: 'module',
+        sourceType: 'module'
     },
-    plugins: ['react', '@typescript-eslint'],
+    plugins: ['react', '@typescript-eslint', 'jsx-a11y'],
     rules: {
         semi: ['error', 'always'],
-        quotes: ['error', 'single'],
+        quotes: ['error', 'single']
     },
     settings: {
         react: {
@@ -31,7 +32,7 @@ module.exports = {
             // default to "createReactClass"
             pragma: 'React', // Pragma to use, default to "React"
             fragment: 'Fragment', // Fragment to use (may be a property of <pragma>), default to "Fragment"
-            version: 'detect', // React version. "detect" automatically picks the version you have installed.
-        },
-    },
+            version: 'detect' // React version. "detect" automatically picks the version you have installed.
+        }
+    }
 };
