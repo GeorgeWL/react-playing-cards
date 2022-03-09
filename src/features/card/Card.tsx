@@ -1,18 +1,22 @@
-import ICardSharedProps from '../../interfaces/CardSharedProps';
-import CardBack, { ICardBackProps } from './CardBack';
-import CardFront, { ICardFrontProps } from './CardFront';
-import styles from './card.module.scss';
 import classNames from 'classnames';
+import { ReactNode } from 'react';
+import ICardSharedProps from '../../interfaces/CardSharedProps';
+import styles from './card.module.scss';
+import CardBack, { ICardBackProps } from './CardBack';
+import CardFront from './CardFront';
 
 enum ECardSide {
     front = 'Front',
     back = 'Back'
 }
 interface IProps extends ICardSharedProps {
+    /**
+     * Cannot have background image and pattern at same time, background image will overwrite
+     */
     backProps: ICardBackProps;
-    frontProps: ICardFrontProps;
     visibleSide: ECardSide;
     onClick: () => void;
+    children: ReactNode;
 }
 
 const stylesCardFlippedFront = styles['card-flipped-front'];
@@ -26,10 +30,10 @@ const Card = ({
     onClick,
     visibleSide = ECardSide.front,
     backProps,
-    frontProps,
     style,
     className,
-    backgroundImageUrl
+    backgroundImageUrl,
+    children
 }: IProps) => (
     <div
         style={{
@@ -44,7 +48,7 @@ const Card = ({
             className
         )}
     >
-        <CardFront {...frontProps} />
+        <CardFront>{children}</CardFront>
         <CardBack {...backProps} />
         <button onClick={onClick} title="Flip Card">
             Flip Card

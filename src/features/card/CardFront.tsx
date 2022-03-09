@@ -1,10 +1,10 @@
 import classNames from 'classnames';
-import { ReactChildren } from 'react';
+import { ReactNode } from 'react';
 import ICardSharedProps from '../../interfaces/CardSharedProps';
 import styles from './card.module.scss';
 
-export interface ICardFrontProps extends ICardSharedProps {
-    corner?: ReactChildren;
+interface ICardFrontProps extends ICardSharedProps {
+    children: ReactNode;
 }
 
 /**
@@ -13,7 +13,8 @@ export interface ICardFrontProps extends ICardSharedProps {
 const CardFront = ({
     style,
     className,
-    backgroundImageUrl
+    backgroundImageUrl,
+    children
 }: ICardFrontProps) => (
     <div
         style={{
@@ -22,7 +23,7 @@ const CardFront = ({
         }}
         className={classNames(styles['card-front'], className)}
     >
-        CardFront
+        CardFront {children}
     </div>
 );
 

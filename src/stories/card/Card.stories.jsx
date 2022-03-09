@@ -1,18 +1,21 @@
 import Card from '../../features/card/Card';
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: 'Card/Card',
     component: Card,
-    // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-    argTypes: {}
+    argTypes: {},
+    args: {
+        /**
+         * Cannot have background image and pattern at same time, background image will overwrite
+         */
+        backProps: {
+            backgroundImageUrl: 'https://placekitten.com/600/800',
+            patternName: 'wavy'
+        },
+        visibleSide: 'Front'
+    }
 };
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template = args => <Card {...args} />;
 
 export const Primary = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
-    backProps: { backgroundImageUrl: 'https://placekitten.com/600/800' }
-};

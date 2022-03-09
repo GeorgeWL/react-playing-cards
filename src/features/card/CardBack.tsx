@@ -18,14 +18,21 @@ enum EPatterns {
     stripesVertical = 'stripes-vertical',
     stripesHorizontal = 'stripes-horizontal',
     squareTiles = 'square-tiles',
-    isometricTiles = 'isometric-tiles'
+    isometricTiles = 'isometric-tiles',
+    dots = 'dots'
 }
 
 export interface ICardBackProps extends ICardSharedProps {
+    /**
+     * Cannot have background image and pattern at same time, background image will overwrite
+     */
     patternName: EPatterns;
-    patternPrimaryColor?: string;
-    patternSecondaryColor?: string;
-    patternOpacity: number;
+    /**
+     * will have to switch to styled-components to use these, remove for now
+     */
+    // patternPrimaryColor?: string;
+    // patternSecondaryColor?: string;
+    // patternOpacity: number;
 }
 
 /**
@@ -36,27 +43,22 @@ const CardBack = ({
     style,
     className,
     patternName,
-    patternPrimaryColor,
-    patternSecondaryColor,
-    patternOpacity
+    backgroundImageUrl
 }: ICardBackProps) => (
     <div
         title="card back"
         style={{
             ...style,
-            ['--pattern-primary-color' as never]:
-                patternPrimaryColor ?? '#444cf7',
-            ['--pattern-secondary-color' as never]:
-                patternSecondaryColor ?? '#f8ff37',
-            ['--pattern-opacity' as never]:
-                (patternOpacity >= 0 &&
-                    patternOpacity <= 100 &&
-                    patternOpacity) ??
-                0.8
+            backgroundImage: backgroundImageUrl && `url(${backgroundImageUrl})`,
+            opacity: backgroundImageUrl && 1,
+            backgroundPosition: backgroundImageUrl && 'center center',
+            backgroundSize: backgroundImageUrl && 'cover'
         }}
         className={classNames(
             styles['card-back'],
-            patternName && styles[`card-back-pattern--${patternName}`],
+            !backgroundImageUrl &&
+                patternName &&
+                styles[`card-back-pattern--${patternName}`],
             className
         )}
     />

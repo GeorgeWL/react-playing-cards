@@ -1,6 +1,6 @@
 import IStyleProps from './StyleProps';
 
 interface ICardSharedProps extends IStyleProps {
-    backgroundImageUrl?: URL;
+    backgroundImageUrl?: string;
 }
 export default ICardSharedProps;

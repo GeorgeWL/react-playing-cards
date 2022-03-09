@@ -30,5 +30,8 @@ const Template = args => <CardBack {...args} />;
 export const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Primary.args = {
-    backgroundImageUrl: 'https://placekitten.com/600/800'
+    patternName: 'wavy'
+    // patternPrimaryColor: 'blue',
+    // patternSecondaryColor: 'red',
+    // patternOpacity: 0.8,
 };

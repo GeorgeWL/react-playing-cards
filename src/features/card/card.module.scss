@@ -96,3 +96,6 @@
 .card-back-pattern--isometric-tiles {
     @include patterns.background-isometric-tiles;
 }
+.card-back-pattern--dots {
+    @include patterns.background-dots;
+}
