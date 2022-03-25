@@ -46,7 +46,7 @@ Runs eslint on all js/ts/jsx/tsx files within the project, in fix mode, which at
 
 Runs [Storybook](https://storybook.js.org/), a documentation/protoyping toolkit which aids in rapid development of standalone components
 
-### `build-storybook`
+### `npm run build-storybook`
 
 Builds Storybook, so it can be hosted on a remote server
 
